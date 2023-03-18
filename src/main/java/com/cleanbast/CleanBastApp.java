@@ -16,8 +16,8 @@ public class CleanBastApp extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(CleanBastApp.class.getResource("/com/cleanbast/cleaner-view.fxml")));
         Parent root = loader.load();
-        Scene Principalscene = new Scene(root);
-        stage.setScene(Principalscene);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
 
         Image iconPath = new Image(Objects.requireNonNull(CleanBastApp.class.getResourceAsStream("/assets/icon/icon-balai.png")));
         stage.getIcons().add(iconPath);
