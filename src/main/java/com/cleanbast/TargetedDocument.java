@@ -1,7 +1,6 @@
 package com.cleanbast;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.awt.Desktop.getDesktop;
@@ -10,43 +9,42 @@ public class TargetedDocument {
     private final ArrayList<File> deletedDocuments;
     private final CleanerController cleanerController;
 
-    public TargetedDocument(CleanerController cleanerController) throws IOException {
+    public TargetedDocument(CleanerController cleanerController) {
         this.deletedDocuments = new ArrayList<>();
         this.cleanerController = cleanerController;
     }
 
-    public ArrayList<File> processForDocumentDeletion(File document) throws IOException {
-        if (validTargetedDocument(document)) {
-            //methode "haveAllrights" qui vérifie si on a les droits sur le chemin donné et qui sera aussi appelé
-            // dans le del à chaque parcours du dossier, elle verif les droits, si le dossier est un dossier caché ( isHidden() )
-            // si le dossier a un . devant son nom
+    public ArrayList<File> processForDocumentDeletion(File document) {
+        if (validTargetedDocument(document) && rightsOnDocument(document)) {
             deleteEmptyDocuments(document);
         }
-
         return this.deletedDocuments;
     }
 
     public boolean validTargetedDocument(File document) {
-        if (!document.exists() || !document.isDirectory()) {
-            this.cleanerController.setAlertLabel("Veuillez choisir un dossier avec un chemin valide");
+        if (!document.exists() || !document.isDirectory() || !rightsOnDocument(document)) {
+            this.cleanerController.setNotValidDocumentLabel("Veuillez choisir un dossier valide");
             return false;
         } else {
-            this.cleanerController.setAlertLabel("");
+            this.cleanerController.setNotValidDocumentLabel("");
             return true;
         }
     }
+    public boolean rightsOnDocument(File document) {
+        return document.canWrite() && !document.getName().startsWith(".") && !document.isHidden();
+    }
 
-    public void deleteEmptyDocuments(File document) throws IOException {
+    public void deleteEmptyDocuments(File document) {
         for (File file : document.listFiles()) {
-            if (file.isDirectory()) {
+            if (file.isDirectory() && rightsOnDocument(file)) {
                 deleteEmptyDocuments(file);
-            } else if (file.length() == 0) {
+            } else if (file.length() == 0 && rightsOnDocument(file)) {
                 this.deletedDocuments.add(file);
                 getDesktop().moveToTrash(file);
             }
         }
 
-        if (document.listFiles().length == 0) {
+        if (document.listFiles().length == 0 & rightsOnDocument(document)) {
             this.deletedDocuments.add(document);
             getDesktop().moveToTrash(document);
         }
