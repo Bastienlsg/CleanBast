@@ -1,4 +1,4 @@
-package com.cleanbast.model;
+package com.cleanbast.service;
 
 import com.cleanbast.controller.CleanerController;
 
