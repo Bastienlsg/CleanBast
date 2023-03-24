@@ -1,4 +1,4 @@
-package com.cleanbast;
+package com.cleanbast.launcher;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class CleanBastApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(CleanBastApp.class.getResource("/com/cleanbast/cleaner-view.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(CleanBastApp.class.getResource("/com/cleanbast/view/cleaner-view.fxml")));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);

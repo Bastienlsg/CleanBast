@@ -1,5 +1,6 @@
-package com.cleanbast;
+package com.cleanbast.controller;
 
+import com.cleanbast.model.TargetedDocument;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

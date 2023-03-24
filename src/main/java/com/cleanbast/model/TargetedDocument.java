@@ -1,4 +1,6 @@
-package com.cleanbast;
+package com.cleanbast.model;
+
+import com.cleanbast.controller.CleanerController;
 
 import java.io.File;
 import java.util.ArrayList;
