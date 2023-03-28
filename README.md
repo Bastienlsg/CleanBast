@@ -8,6 +8,8 @@ Nettoyez des dossiers avec des fichiers vides
 
 * Cloner ce dépôt
 
+* Pour faciliter les manoeuvres ci-dessous, utilisez [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows), [Eclipse](https://www.eclipse.org/downloads/), ou un autre IDE
+
 * Dans le projet :
 
     * Installer les dépendances
