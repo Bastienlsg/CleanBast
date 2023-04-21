@@ -4,7 +4,7 @@ Nettoyez des dossiers avec des fichiers vides
 
 ## Il vous faut :
 
-* [Un JDK](https://www.oracle.com/fr/java/technologies/downloads/)
+* [Un JDK](https://www.oracle.com/fr/java/technologies/downloads/), je l'ai développé avec un JDK 20
 
 * Cloner ce dépôt
 
