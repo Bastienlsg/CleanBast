@@ -1,35 +1,35 @@
-# 📁 CleanBast - Nettoyeur de dossier 📁
+# 📁 CleanBast - Folder cleaner 📁
 
-Nettoyez des dossiers avec des fichiers vides
+Clean up folders with empty files
 
-## Il vous faut :
+## You need:
 
-* [Un JDK](https://www.oracle.com/fr/java/technologies/downloads/), je l'ai développé avec un JDK 20
+* [A JDK](https://www.oracle.com/fr/java/technologies/downloads/), I developed it with JDK version 20.0.1
 
-* Cloner ce dépôt
+* Clone this repository
 
-* Pour faciliter les manoeuvres ci-dessous, utilisez [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows), [Eclipse](https://www.eclipse.org/downloads/), ou un autre IDE
+* To make the below maneuvers easier, use [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=windows), [Eclipse](https://www.eclipse.org/downloads/), or another IDE
 
-* Dans le projet :
+* In the project:
 
-    * Installer les dépendances
-    * Run la classe "CleanBastApp"
+  * Install the dependencies
+  * Run the "CleanBastApp" class
 
-## Les raisons de ce projet :
+## Reasons for this project:
 
-* Il est important d'enlever les dossiers vides de votre système de fichiers pour deux raisons principales :
-  * Les dossiers vides peuvent rendre votre système de fichiers désorganisé et difficile à naviguer.
-  * Lorsque vous naviguez dans votre explorateur de fichiers, 
-    le système d'exploitation doit charger l'information du dossier, 
-    même s'il est vide, ce qui peut le ralentir.
+* It is important to remove empty folders from your file system for two main reasons:
+  * Empty folders can make your file system disorganized and difficult to navigate.
+  * When you browse your file explorer,
+    the operating system has to load the folder information,
+    even if it is empty, which can slow it down.
 
-## Attention :
+## Warning:
 
-* Par sécurité tout ce qui concerne des fichiers
-  dans le disque principal ne fonctionnera pas
-  ceci est un projet personnel qui ne vise aucune
-  utilisation quotidienne
+* For security reasons, anything involving files
+  in the main disk will not work
+  this is a personal project that is not intended for any
+  daily use
 
-## Le créateur du projet :
+## The creator of the project:
 
 * Bastien Lassaigne : [Linkedin](https://www.linkedin.com/in/bastien-lassaigne-8aa665222/)

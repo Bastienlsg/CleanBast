@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The root element of a Maven POM file -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- The model version of the POM file -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- The project's group ID, artifact ID, and version -->
     <groupId>com.cleanbast</groupId>
     <artifactId>CleanBast</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CleanBast</name>
 
+    <!-- The project's name and character encoding -->
+    <name>CleanBast</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- The version of JUnit used for testing -->
         <junit.version>5.9.2</junit.version>
     </properties>
 
+    <!-- The project's dependencies -->
     <dependencies>
+        <!-- JavaFX dependencies for UI controls and FXML -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -26,6 +35,7 @@
             <version>19.0.2.1</version>
         </dependency>
 
+        <!-- JUnit's dependencies for testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -40,30 +50,41 @@
         </dependency>
     </dependencies>
 
+    <!-- The project's build configuration -->
     <build>
+        <!-- Maven plugins used for building the project -->
         <plugins>
+            <!-- Maven compiler plugin for compiling Java code -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
+                <!-- The Java source and target versions used for compiling the code -->
                 <configuration>
                     <source>19</source>
                     <target>19</target>
                 </configuration>
             </plugin>
+
+            <!-- JavaFX Maven plugin for creating an executable JAR file -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
+                <!-- Configuration for running the application with "mvn clean javafx:run" -->
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
+                        <!-- The main class used to launch the application -->
                         <configuration>
                             <mainClass>com.cleanbast.cleanbast/com.cleanbast.launcher.CleanBastApp</mainClass>
-                            <launcher>app</launcher>
+                            <!-- The name of the generated JAR file -->
+                            <launcher>CleanBast</launcher>
+                            <!-- The name of the generated JLink ZIP file -->
                             <jlinkZipName>app</jlinkZipName>
+                            <!-- The name of the generated JLink image directory -->
                             <jlinkImageName>app</jlinkImageName>
+                            <!-- Flags to disable generating man pages, header files, and debug symbols -->
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
@@ -71,6 +92,8 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
+
 </project>

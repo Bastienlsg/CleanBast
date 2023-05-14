@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cleanbast.controller.CleanerController" styleClass="main-window">
+   <ImageView fx:id="principalImageView" />
+   <Label layoutX="292.5" layoutY="25.0" text="Choisissez un dossier" styleClass="label-title" />
+   <TextField fx:id="entryPathField" layoutX="292.5" layoutY="55.0" styleClass="input-property" />
+   <Button layoutX="480.0" layoutY="55.0" mnemonicParsing="false" onAction="#openDirectoryChooser"
+           text="📁" styleClass="directory-btn" />
+   <Label fx:id="notValidDocumentLabel" layoutX="292.5" layoutY="102.5" styleClass="error-label" />
+   <ListView fx:id="deletedDocumentsView" layoutX="292.5" layoutY="128.0" styleClass="list-size" />
+   <Button layoutX="292.5" layoutY="350.0" mnemonicParsing="false" onAction="#requestDeleteDocuments"
+           text="Supprimer" styleClass="submit-btn" />
+</AnchorPane>

@@ -11,49 +11,64 @@ public class TargetedDocument {
     private final ArrayList<File> deletedDocuments;
     private final CleanerController cleanerController;
 
+    // Constructor for TargetedDocument class
     public TargetedDocument(CleanerController cleanerController) {
+        // Initialize list of deleted documents and reference to the cleaner controller
         this.deletedDocuments = new ArrayList<>();
         this.cleanerController = cleanerController;
     }
 
+    // All the process for the document deletion
     public ArrayList<File> processForDocumentDeletion(File document) {
-        // Vérification que le document est valide et que l'utilisateur a les droits d'accès nécessaires
+        // If the document is valid and the user has rights to delete it
         if (validTargetedDocument(document) && rightsOnDocument(document)) {
+            // Delete empty documents in the directory
             deleteEmptyDocuments(document);
         }
+        // Return the list of deleted documents
         return this.deletedDocuments;
     }
 
-    // Vérification qu'il s'agit bien d'un document valide au parcours d'une suppression
+    // Check if the targeted document is valid
+    // Returns a boolean value indicating if the document is valid
     public boolean validTargetedDocument(File document) {
+        // If the document does not exist, is not a directory, or the user does not have rights to delete it
         if (!document.exists() || !document.isDirectory() || !rightsOnDocument(document)) {
+            // Set an error message on the cleaner controller and return false
             this.cleanerController.setNotValidDocumentLabel("Veuillez choisir un dossier valide");
             return false;
-        } else {
-            this.cleanerController.setNotValidDocumentLabel("");
-            return true;
         }
+        // Clear any previous error messages on the cleaner controller and return true
+        this.cleanerController.setNotValidDocumentLabel("");
+        return true;
     }
 
-    // Vérification que l'utilisateur a les droits nécessaires sur le document
+    // Check if the user has rights to delete a document
+    // Returns a boolean value indicating if the user has rights to delete the document
     public boolean rightsOnDocument(File document) {
         return document.canWrite() && !document.getName().startsWith(".") && !document.isHidden();
     }
 
+    // Delete empty documents in a directory recursively
     public void deleteEmptyDocuments(File document) {
+        // For each file in the directory
         for (File file : document.listFiles()) {
-            // Le fichier actuel est un dossier et l'utilisateur a les droits nécessaires ? On fait un appel récursif
+            // If the file is a directory and the user has rights to delete it
             if (file.isDirectory() && rightsOnDocument(file)) {
+                // Recursively delete empty documents in the subdirectory
                 deleteEmptyDocuments(file);
-                // Le fichier est vide et l'utilisateur a les droits nécessaires ? On le supprime
-            } else if (file.length() == 0 && rightsOnDocument(file)) {
+            }
+            // If the file is empty and the user has rights to delete it
+            else if (file.length() == 0 && rightsOnDocument(file)) {
+                // Add the file to the list of deleted documents and move it to the trash
                 this.deletedDocuments.add(file);
                 getDesktop().moveToTrash(file);
             }
         }
 
-        // Le dossier donné est maintenant vide et l'utilisateur a les droits nécessaires ? On le supprime
+        // If the directory is empty and the user has rights to delete it
         if (document.listFiles().length == 0 & rightsOnDocument(document)) {
+            // Add the directory to the list of deleted documents and move it to the trash
             this.deletedDocuments.add(document);
             getDesktop().moveToTrash(document);
         }

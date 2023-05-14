@@ -1,0 +1,36 @@
+.main-window {
+    -fx-min-width: 600;
+    -fx-min-height: 400;
+}
+
+.label-title {
+    -fx-font-family: arial;
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+
+.input-property {
+    -fx-pref-width: 165;
+    -fx-pref-height: 30;
+}
+
+.directory-btn {
+    -fx-pref-width: 55;
+    -fx-pref-height: 30;
+}
+
+.error-label {
+    -fx-pref-width: 200;
+    -fx-pref-height: 18;
+    -fx-text-fill: red;
+}
+
+.list-size {
+    -fx-pref-width: 265;
+    -fx-pref-height: 210;
+}
+
+.submit-btn {
+    -fx-pref-width: 100;
+    -fx-pref-height: 30;
+}
