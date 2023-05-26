@@ -20,10 +20,11 @@ public class CleanBastApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
+        Scene scene;
         try {
             loader.setLocation(this.getClass().getResource(FXML_PATH));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            scene = new Scene(root);
             stage.setScene(scene);
         } catch (IOException e) {
             // Handle the error if the FXML file cannot be loaded
@@ -31,9 +32,6 @@ public class CleanBastApp extends Application {
             e.printStackTrace();
             return;
         }
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
 
         // Set the application language
         Locale currentLanguage = Locale.getDefault();
