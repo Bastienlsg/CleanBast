@@ -43,26 +43,40 @@ public class CleanerController {
     // Method called after the FXML file is loaded, sets the principal image view
     @FXML
     public void initialize() {
-        Image image = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(IMAGE_PATH)));
-        this.principalImageView.setImage(image);
+        try {
+            Image image = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(IMAGE_PATH)));
+            this.principalImageView.setImage(image);
+        } catch (NullPointerException e) {
+            // Handle the error if the image file is not found
+            System.err.println("Error: Unable to load the principal image.");
+        }
     }
 
     // Method called when the user clicks on the "Clean" button, processes the selected folder and displays the deleted files
     public void requestDeleteDocuments(ActionEvent e) {
-        File entryPath = new File(this.entryPathField.getText());
-        // Process the folder using the targetedDocument object to retrieve the deleted files
-        ArrayList<File> deletedDocuments = this.targetedDocument.processForDocumentDeletion(entryPath);
-        this.deletedDocumentsView.getItems().addAll(deletedDocuments);
+        try {
+            File entryPath = new File(this.entryPathField.getText());
+            // Process the folder using the targetedDocument object to retrieve the deleted files
+            ArrayList<File> deletedDocuments = this.targetedDocument.processForDocumentDeletion(entryPath);
+            this.deletedDocumentsView.getItems().addAll(deletedDocuments);
+        } catch (NullPointerException ex) {
+            // Handle the error if the entry path is not valid
+            System.err.println("Error: Invalid entry path.");
+        }
     }
 
     // Method called when the user clicks on the "Browse" button, opens a directory chooser and sets the selected directory in the text field
     public void openDirectoryChooser(ActionEvent e) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choisis un dossier");
-        String selectedDirectory = String.valueOf(directoryChooser.showDialog(null));
-        // If the selected directory is not null, set the text of the entryPathField to the selected directory path.
-        if (!Objects.equals(selectedDirectory, "null")) {
-            this.entryPathField.setText(selectedDirectory);
+        try {
+            File selectedDirectory = directoryChooser.showDialog(null);
+            if (selectedDirectory != null) {
+                this.entryPathField.setText(selectedDirectory.getAbsolutePath());
+            }
+        } catch (NullPointerException ex) {
+            // Handle the error if the directory chooser encounters an issue
+            System.err.println("Error: Unable to open the directory chooser.");
         }
     }
 
