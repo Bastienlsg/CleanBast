@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import static com.cleanbast.constants.Constants.*;
 
 public class CleanBastApp extends Application {
+    // Get current language
     public final static Locale currentLocale = Locale.getDefault();
 
     // This method is called when the application is launched.
@@ -24,6 +25,7 @@ public class CleanBastApp extends Application {
         ResourceBundle bundle = ResourceBundle.getBundle("assets.language", currentLocale);
         Scene scene;
         try {
+            // Set the FXML and the language for the application
             Parent root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource(FXML_PATH)), bundle);
             scene = new Scene(root);
             stage.setScene(scene);
@@ -33,10 +35,6 @@ public class CleanBastApp extends Application {
             e.printStackTrace();
             return;
         }
-
-        // Set the application language
-        Locale currentLanguage = Locale.getDefault();
-
 
         // Set the application icon image
         try {
