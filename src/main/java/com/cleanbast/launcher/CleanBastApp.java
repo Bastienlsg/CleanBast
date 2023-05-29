@@ -10,20 +10,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import static com.cleanbast.constants.Constants.*;
 
 public class CleanBastApp extends Application {
+    public final static Locale currentLocale = Locale.getDefault();
 
     // This method is called when the application is launched.
     // It loads the FXML file for the GUI and creates a scene for the application.
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
+    public void start(Stage stage) {
+        ResourceBundle bundle = ResourceBundle.getBundle("assets.language", currentLocale);
         Scene scene;
         try {
-            loader.setLocation(this.getClass().getResource(FXML_PATH));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource(FXML_PATH)), bundle);
             scene = new Scene(root);
             stage.setScene(scene);
         } catch (IOException e) {

@@ -1,6 +1,7 @@
 package com.cleanbast.service;
 
 import com.cleanbast.controller.CleanerController;
+import com.cleanbast.launcher.CleanBastApp;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,7 +43,11 @@ public class TargetedDocument {
             // If the document does not exist, is not a directory, or the user does not have rights to delete it
             if (!document.exists() || !document.isDirectory() || !rightsOnDocument(document)) {
                 // Set an error message on the cleaner controller and return false
-                this.cleanerController.setNotValidDocumentLabel("Please choose a valid folder");
+                if (CleanBastApp.currentLocale.toString().equals("fr_FR")) {
+                    this.cleanerController.setNotValidDocumentLabel("Veuillez choisir un dossier valide");
+                } else {
+                    this.cleanerController.setNotValidDocumentLabel("Please choose a valid folder");
+                }
                 return false;
             }
             // Clear any previous error messages on the cleaner controller and return true

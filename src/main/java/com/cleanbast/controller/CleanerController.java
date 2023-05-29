@@ -1,5 +1,6 @@
 package com.cleanbast.controller;
 
+import com.cleanbast.launcher.CleanBastApp;
 import com.cleanbast.service.TargetedDocument;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,7 +69,12 @@ public class CleanerController {
     // Method called when the user clicks on the "Browse" button, opens a directory chooser and sets the selected directory in the text field
     public void openDirectoryChooser(ActionEvent e) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Choisis un dossier");
+        if (CleanBastApp.currentLocale.toString().equals("fr_FR")) {
+            directoryChooser.setTitle("Choisissez un dossier");
+        } else {
+            directoryChooser.setTitle("Choose a folder");
+        }
+
         try {
             File selectedDirectory = directoryChooser.showDialog(null);
             if (selectedDirectory != null) {
